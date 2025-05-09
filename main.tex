@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\usepackage{fontspec}            % шрифты
+    \setmainfont{Times New Roman}
+    \setmonofont{Courier New}
+\usepackage[english,russian]{babel}
+\usepackage{ragged2e}            % для выравнивания по ширине, по центру
+    \justifying
+\usepackage{indentfirst}         % отступы первой строки
+    \setlength{\parindent}{12.5mm}
+\usepackage{setspace}            % межстрочный интервал полтора
+    \onehalfspacing
+\usepackage{geometry}     
+    \geometry{                   % установление границ документа
+        a4paper,
+        left=30mm,
+        right=10mm,
+        top=20mm,
+        bottom=20mm
+    }
+\usepackage{fancyhdr}            % нумерация страниц справа снизу
+    \pagestyle{fancy}
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyhf{}
+    \fancyfoot[R]{\thepage}
+\usepackage[]{graphicx}          % вставка картинок
+    \graphicspath{{images/}} 
+\usepackage{hyperref}            % для перехода из содержания к разделам по главам
+\usepackage{tocloft}             % управление настройками содержания
+\usepackage{listings}
+
+
+\begin{document}
+
+\include{tex//titlepage}
+\include{tex//content}
+\include{tex//task}
+\include{tex//pseudocode}
+\include{tex//coding_env}
+\include{tex//input_output}
+\include{tex//list_of_modules}
+\include{tex//list_of_errors}
+\include{tex//instruction}
+\include{tex//listing}
+\include{tex//testing}
+
+\end{document}

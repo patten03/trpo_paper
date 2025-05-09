@@ -1,0 +1,13 @@
+\renewcommand{\contentsname}{Содержание} % название содержания
+\renewcommand{\cftsecpagefont}{}         % избавление от жирности текста
+\renewcommand{\cftsecfont}{}             % избавление от жирности текста
+
+\let\oldtableofcontents\tableofcontents  % сохранение нумерации
+\renewcommand{\tableofcontents}{
+    \oldtableofcontents
+    \thispagestyle{fancy}
+}
+
+\tableofcontents
+
+\newpage
