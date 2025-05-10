@@ -30,15 +30,16 @@
 \usepackage{enumitem}            % для сдвига списков вправо
     \setlist[itemize]{noitemsep,leftmargin=2cm}
 \usepackage{amsmath}             % для математических символов
-\usepackage{tabularx}
-\usepackage{seqsplit}
-\usepackage{lscape}
-\usepackage[none]{hyphenat}
-\usepackage{rotating}
-\usepackage{pdflscape}
+\usepackage{tabularx}            % работа с таблицами
+\usepackage{longtable}       
+\usepackage{seqsplit}            % для свободного переноса длинных строк кода
+\usepackage{lscape}              % для альбомной ориентации страниц
+\usepackage[none]{hyphenat}      % предотвращение переноса через тире         
+\usepackage{pdflscape}           % для переворота страниц pdf
+\usepackage{caption}             % для работы с подписями, чтобы удалить лишние <:>
+    \captionsetup[table]{labelsep=space}
 
 % стиль текста "код"
-% \newcommand{\courier}[1]{{\fontspec{Courier New}\fontsize{10pt}{12pt}\selectfont #1}}
 \newcommand{\code}[1]{\fontsize{10pt}{12pt}\texttt{#1}}
 
 

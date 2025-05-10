@@ -58,67 +58,103 @@
 }
 
 \newpage
-\begin{landscape}
+
+{
     \setlength{\parindent}{0pt}
-    
     \begin{table}[h!]
-        \begin{tabularx}{1.5\textwidth}{ |>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X| }
-        
+        \begin{tabularx}{\textwidth}{ |>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X| }
+            
         \hline
-        Функция &
+        Структура &
         Назначение &
-        Возвращаемое/изменяемое значение &
-        Параметры \\ \hline
+        Поля \\ \hline
 
-        \multicolumn{4}{|c|}{Заголовочный файл mathVector.h} \\ \hline
+        \multicolumn{3}{|c|}{Заголовочный файл progRes.h} \\ \hline
 
-        \code{\seqsplit{MathVector\newline MathVector::operator+(MathVector const\& obj)}} &
-        Сложения векторов по координатам &
-        Возвращает вектор \code{[MathVector]} суммы векторов &
-        \code{MathVector\ const\&\ obj} - вектор для сложения \\ \hline
-        
-        \code{\seqsplit{MathVector\newline MathVector::operator-(MathVector\ const\&\ obj)}} &
-        Вычитание векторов по координатам &
-        Возвращает вектор \code{[MathVector]} разности векторов &
-        \code{MathVector\ const\&\ obj} - вектор для вычитания \\ \hline
-
-        \code{\seqsplit{MathVector\newline MathVector::crossProd(MathVector\ const\&\ obj)}} &
-        Векторное умножение векторов &
-        Возвращает вектор \code{[MathVector]} векторного произведения векторов &
-        \code{MathVector\ const\&\ obj} - вектор для умножения. \\ \hline
-
-        \code{\seqsplit{float\newline MathVector::dotProd(MathVector\ const\&\ obj)\ const}} &
-        Вычисление скалярного произведения векторов &
-        Возвращает значение скалярного произведения \code{[float]}. &
-        \code{MathVector\ const\&\ obj} - вектор для произведения. \\ \hline
-
-        \code{\seqsplit{float\ MathVector::len()}} &
-        Определения длины вектора &
-        Значение длины вектора \code{[float]}. &
-        - \\ \hline
-
-        \code{\seqsplit{float\newline MathVector::cosBetween(MathVector\ const\&\ obj)\ const}} &
-        Определения косинуса между векторами. &
-        Возвращает значение косинуса \code{[float]} между векторами. &
-        \code{MathVector\ const\&\ obj} - вектор, между которым определяется косинус угла. \\ \hline
-
-
-        \code{\seqsplit{float\newline MathVector::angle(MathVector\ const\&\ obj)\ const}} &
-        Определения угла между векторами. &
-        Возвращает значение угла  \code{[float]} в радианах между векторами. &
-        \code{MathVector\ const\&\ obj} - вектор, между которым определяется угол. \\ \hline
-
-        \code{\seqsplit{MathVector::MathVector(float\ xParam,\ float\ yParam,\ float\ zParam)}} &
-        Конструктор по умолчанию. &
-        - &
-        \code{float xParam, float yParam, float zParam} - координаты вершины вектора (x,y,z) для инициализации вектора. \\ \hline
-
-        \code{\seqsplit{MathVector::MathVector(MathVector \&copy)}} &
-        Конструктор копирования. &
-        - &
-        \code{MathVector \&copy} - вектор для копирования. \\ \hline
-
+        \code{struct Calculations} &
+        Предназначена для хранение результатов операций между векторами. &
+        \code{MathVector A, B} - вводимые векторы A и B\newline
+        \code{MathVector Sum, Diff, CrossProd} - векторы суммы, разности и векторного произведения\newline
+        \code{float cosines} - значения косинуса\newline
+        \code{float angle} - значение угла между векторами\newline
+        \code{float sumLength} - длина вектора суммы\newline
+        \code{float diffLength} - длина вектора разности\newline
+        \code{float dotProd} - значение скалярного произведения \\ \hline
 
         \end{tabularx}
     \end{table}
+}
+
+\newpage
+
+\begin{landscape}
+    \setlength{\parindent}{0pt}
+    
+    \begin{longtable}{ |>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}p{5cm}|>{\raggedright\arraybackslash}p{5cm}| }
+    
+    \hline
+    Функция &
+    Назначение &
+    Возвращаемое/изменяемое значение &
+    Параметры \\ \hline
+    \endhead
+    
+    \hline
+    \endfoot
+    
+    \multicolumn{4}{|c|}{Заголовочный файл mathVector.h} \\ \hline
+
+    \code{\seqsplit{MathVector\newline MathVector::operator+(MathVector const\& obj)}} &
+    Сложения векторов по координатам &
+    Возвращает вектор \code{[MathVector]} суммы векторов &
+    \code{MathVector\ const\&\ obj} - вектор для сложения \\ \hline
+    
+    \code{\seqsplit{MathVector\newline MathVector::operator-(MathVector\ const\&\ obj)}} &
+    Вычитание векторов по координатам &
+    Возвращает вектор \code{[MathVector]} разности векторов &
+    \code{MathVector\ const\&\ obj} - вектор для вычитания \\ \hline
+
+    \code{\seqsplit{MathVector\newline MathVector::crossProd(MathVector\ const\&\ obj)}} &
+    Векторное умножение векторов &
+    Возвращает вектор \code{[MathVector]} векторного произведения векторов &
+    \code{MathVector\ const\&\ obj} - вектор для умножения. \\ \hline
+
+    \code{\seqsplit{float\newline MathVector::dotProd(MathVector\ const\&\ obj)\ const}} &
+    Вычисление скалярного произведения векторов &
+    Возвращает значение скалярного произведения \code{[float]}. &
+    \code{MathVector\ const\&\ obj} - вектор для произведения. \\ \hline
+
+    \code{\seqsplit{float\ MathVector::len()}} &
+    Определения длины вектора &
+    Значение длины вектора \code{[float]}. &
+    - \\ \hline
+
+    \code{\seqsplit{float\newline MathVector::cosBetween(MathVector\ const\&\ obj)\ const}} &
+    Определения косинуса между векторами. &
+    Возвращает значение косинуса \code{[float]} между векторами. &
+    \code{MathVector\ const\&\ obj} - вектор, между которым определяется косинус угла. \\ \hline
+
+    \code{\seqsplit{float\newline MathVector::angle(MathVector\ const\&\ obj)\ const}} &
+    Определения угла между векторами. &
+    Возвращает значение угла  \code{[float]} в радианах между векторами. &
+    \code{MathVector\ const\&\ obj} - вектор, между которым определяется угол. \\ \hline
+
+    \code{\seqsplit{MathVector::MathVector(float\ xParam,\ float\ yParam,\ float\ zParam)}} &
+    Конструктор по умолчанию. &
+    - &
+    \code{float xParam, float yParam, float zParam} - координаты вершины вектора (x,y,z) для инициализации вектора. \\ \hline
+
+    \code{\seqsplit{MathVector::MathVector(MathVector \&copy)}} &
+    Конструктор копирования. &
+    - &
+    \code{MathVector \&copy} - вектор для копирования. \\ \hline
+
+    \multicolumn{4}{|c|}{Заголовочный файл mainwindow.h} \\ \hline
+
+    \code{\seqsplit{void\ MainWindow::on\_calculate\_clicked()}} &
+    Вычисление данных по нажатию клавиши. &
+    - &
+    - \\ \hline
+
+    \end{longtable}
 \end{landscape}
