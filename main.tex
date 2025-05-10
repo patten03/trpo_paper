@@ -5,6 +5,7 @@
 \usepackage[english,russian]{babel}
 \usepackage{ragged2e}            % для выравнивания по ширине, по центру
     \justifying
+    \sloppy
 \usepackage{indentfirst}         % отступы первой строки
     \setlength{\parindent}{12.5mm}
 \usepackage{setspace}            % межстрочный интервал полтора
@@ -13,9 +14,9 @@
     \geometry{                   % установление границ документа
         a4paper,
         left=30mm,
-        right=10mm,
-        top=20mm,
-        bottom=20mm
+        right=15mm,
+        top=25mm,
+        bottom=25mm
     }
 \usepackage{fancyhdr}            % нумерация страниц справа снизу
     \pagestyle{fancy}
@@ -23,7 +24,7 @@
     \fancyhf{}
     \fancyfoot[R]{\thepage}
 \usepackage[]{graphicx}          % вставка картинок
-    \graphicspath{{images/}} 
+\usepackage{float}
 \usepackage{hyperref}            % для перехода из содержания к разделам по главам
 \usepackage{tocloft}             % управление настройками содержания
 \usepackage{listings}            % для листинга

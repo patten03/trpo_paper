@@ -1,0 +1,319 @@
+\begin{landscape}
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{17pt}
+\fancyhf{}
+\fancyhead[R]{\rotatebox{90}{\thepage}}
+
+\label{sec:listing}
+\section{Листинг программной разработки}
+
+\lstset{
+    basicstyle=\ttfamily\fontsize{10pt}{12pt}\selectfont,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=true
+}
+
+\captionsetup[lstlisting]{labelformat=empty}
+
+
+\begin{lstlisting}[caption={mathVector.h}]
+
+#ifndef MATHVECTOR_H
+#define MATHVECTOR_H
+
+#include <cmath>
+
+class MathVector
+{
+public:
+    // Координаты вектора
+    float x, y, z;
+
+    // Математические операции для работы с векторами
+    // Операции, которые возвращают векторные значения
+    MathVector operator+(MathVector const& obj);   // операция сложения
+    MathVector operator-(MathVector const& obj);   // операция вычитания
+    MathVector crossProd(MathVector const& obj);   // операция векторного умножения
+    // Операции, которые возвращают скалярные значения
+    float dotProd(MathVector const& obj) const;    // операция скалярного умножения
+    float len() const;                             //
+    float cosBetween(MathVector const& obj) const; // операция определения косинуса между векторами
+    float angle(MathVector const& obj) const;      // операция определения угла между векторами
+
+    // Конструкторы
+    MathVector(float xParam = 0, float yParam = 0, float zParam = 0);
+    MathVector(MathVector &copy);
+};
+
+#endif // MATHVECTOR_H
+
+\end{lstlisting}
+
+\newpage
+\begin{lstlisting}[caption={progRes.h}]
+
+#ifndef PROGRES_H
+#define PROGRES_H
+
+#include <mathVector.h>
+
+// Структура для хранения вводимых данных пользователем и результатов вычислений
+struct Calculations
+{
+    MathVector A, B; // Векторы A и B
+    MathVector       // Векторы суммы, разности и векторного произведения
+        Sum,
+        Diff,
+        CrossProd;
+    float
+        cosines,     // значения косинуса
+        angle,       // значение угла между векторами
+        sumLength,   // длина вектора суммы
+        diffLength,  // длина вектора разности
+        dotProd;     // значение скалярного произведения
+
+    Calculations();
+};
+
+#endif // PROGRES_H
+
+\end{lstlisting}
+
+\newpage
+\begin{lstlisting}[caption={mainwindow.h}]
+
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+#include <QLineEdit>
+#include <QDoubleValidator>
+
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private slots:
+    void on_calculate_clicked();
+
+private:
+    Ui::MainWindow *ui;
+};
+#endif // MAINWINDOW_H
+
+\end{lstlisting}
+
+\newpage
+\begin{lstlisting}[caption={main.cpp}]
+
+#include "mainwindow.h"
+
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
+}
+
+\end{lstlisting}
+
+\newpage
+\begin{lstlisting}[caption={mathVector.cpp}]
+
+#include "mathVector.h"
+
+
+// Операция сложения
+MathVector MathVector::operator+(MathVector const& obj)
+{
+    MathVector res;
+    res.x = this->x + obj.x;
+    res.y = this->y + obj.y;
+    res.z = this->z + obj.z;
+
+    return res;
+}
+
+// Операция вычитания
+MathVector MathVector::operator-(MathVector const& obj)
+{
+    MathVector res;
+    res.x = this->x - obj.x;
+    res.y = this->y - obj.y;
+    res.z = this->z - obj.z;
+
+    return res;
+}
+
+// Операция векторное умножение
+MathVector MathVector::crossProd(MathVector const& obj)
+{
+    MathVector res;
+    res.x = this->y * obj.z - this->z * obj.y;
+    res.y = this->z * obj.x - this->x * obj.z;
+    res.z = this->x * obj.z - this->z * obj.x;
+
+    return res;
+}
+
+// Операция скалярного умножения
+float MathVector::dotProd(MathVector const& obj) const
+{
+    float res(0.0);
+    res += this->x * obj.x;
+    res += this->y * obj.y;
+    res += this->z * obj.z;
+
+    return res;
+}
+
+// Операция определения длины вектора
+float MathVector::len()
+const
+{
+    float res(0.0);
+    res += this->x * this->x;
+    res += this->y * this->y;
+    res += this->z * this->z;
+
+    return sqrt(res);
+}
+
+// Операция определения косинуса между векторами
+float MathVector::cosBetween(MathVector const& obj) const
+{
+    return this->dotProd(obj) / this->len() / obj.len();
+}
+
+// Операция определения угла между векторами
+float MathVector::angle(MathVector const& obj) const
+{
+    return acos(this->cosBetween(obj));
+}
+
+// Конструктор по умолчанию
+MathVector::MathVector(float xParam, float yParam, float zParam)
+{
+    this->x = xParam;
+    this->y = yParam;
+    this->z = zParam;
+}
+
+// Конструктор копирования
+MathVector::MathVector(MathVector &copy)
+{
+    this->x = copy.x;
+    this->y = copy.y;
+    this->z = copy.z;
+}
+
+\end{lstlisting}
+
+\newpage
+\begin{lstlisting}[caption={mainwindow.cpp}]
+
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "progRes.h"
+
+// Ограничение на количество знаков после запятой
+const unsigned short prec = 3;
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    // Установка заголовка-названия программы
+    this->setWindowTitle("Vector Calculator");
+
+    // Установка ограничения на ввод только значений с плавующей точкой от -999999.999 до 999999.999
+    QRegularExpression regex("^(-)?([0-9]{1,4})(\\.[0-9]{1," + QString::number(prec) + "})?$");
+    QRegularExpressionValidator *validator = new QRegularExpressionValidator(regex, this);
+    // Установка ограничений для координат x y z для векторов A и B
+    ui->a_x->setValidator(validator);
+    ui->a_y->setValidator(validator);
+    ui->a_z->setValidator(validator);
+    ui->b_x->setValidator(validator);
+    ui->b_y->setValidator(validator);
+    ui->b_z->setValidator(validator);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+// Вычисление данных по нажатию клавиши
+void MainWindow::on_calculate_clicked()
+{
+    // Структура для хранения результатов вычислений
+    Calculations Calc;
+    // Считывание данных от пользователя
+    Calc.A.x = ui->a_x->text().toDouble();
+    Calc.A.y = ui->a_y->text().toDouble();
+    Calc.A.z = ui->a_z->text().toDouble();
+    Calc.B.x = ui->b_x->text().toDouble();
+    Calc.B.y = ui->b_y->text().toDouble();
+    Calc.B.z = ui->b_z->text().toDouble();
+
+    // Расчет данных
+    Calc.Sum = Calc.A + Calc.B;
+    Calc.Diff = Calc.A - Calc.B;
+    Calc.CrossProd = Calc.A.crossProd(Calc.B);
+    Calc.dotProd = Calc.A.dotProd(Calc.B);
+    Calc.sumLength = Calc.Sum.len();
+    Calc.diffLength = Calc.Diff.len();
+    Calc.cosines = Calc.A.cosBetween(Calc.B);
+    Calc.angle = Calc.A.angle(Calc.B);
+
+    // Вывод данных на экран
+    ui->sum_x->setText(QString::number(Calc.Sum.x, 10, prec));
+    ui->sum_y->setText(QString::number(Calc.Sum.y, 10, prec));
+    ui->sum_z->setText(QString::number(Calc.Sum.z, 10, prec));
+
+    ui->diff_x->setText(QString::number(Calc.Diff.x, 10, prec));
+    ui->diff_y->setText(QString::number(Calc.Diff.y, 10, prec));
+    ui->diff_z->setText(QString::number(Calc.Diff.z, 10, prec));
+
+    ui->mul_x->setText(QString::number(Calc.CrossProd.x, 10, prec));
+    ui->mul_y->setText(QString::number(Calc.CrossProd.y, 10, prec));
+    ui->mul_z->setText(QString::number(Calc.CrossProd.z, 10, prec));
+
+    ui->sumLen->setText(QString::number(Calc.sumLength, 10, prec));
+    ui->diffLen->setText(QString::number(Calc.diffLength, 10, prec));
+    ui->dotProd->setText(QString::number(Calc.dotProd, 10, prec));
+
+    // Вывод угла между векторами, если значения не существует
+    if (std::isnan(Calc.cosines) || std::isnan(Calc.angle))
+    {
+        ui->cosAngle->setText("Не существует");
+        ui->angle->setText("Не существует");
+    }
+    else
+    {
+        ui->cosAngle->setText(QString::number(Calc.cosines, 10, prec));
+        ui->angle->setText(QString::number(Calc.angle * 180 / 3.14159, 10, prec) + "°");
+    }
+}
+
+\end{lstlisting}
+
+\end{landscape}
