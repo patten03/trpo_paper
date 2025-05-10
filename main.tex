@@ -26,7 +26,20 @@
     \graphicspath{{images/}} 
 \usepackage{hyperref}            % для перехода из содержания к разделам по главам
 \usepackage{tocloft}             % управление настройками содержания
-\usepackage{listings}
+\usepackage{listings}            % для листинга
+\usepackage{enumitem}            % для сдвига списков вправо
+    \setlist[itemize]{noitemsep,leftmargin=2cm}
+\usepackage{amsmath}             % для математических символов
+\usepackage{tabularx}
+\usepackage{seqsplit}
+\usepackage{lscape}
+\usepackage[none]{hyphenat}
+\usepackage{rotating}
+\usepackage{pdflscape}
+
+% стиль текста "код"
+% \newcommand{\courier}[1]{{\fontspec{Courier New}\fontsize{10pt}{12pt}\selectfont #1}}
+\newcommand{\code}[1]{\fontsize{10pt}{12pt}\texttt{#1}}
 
 
 \begin{document}
@@ -36,9 +49,6 @@
 \include{tex//task}
 \include{tex//pseudocode}
 \include{tex//info}
-\include{tex//coding_env}
-\include{tex//input_output}
-\include{tex//list_of_modules}
 \include{tex//list_of_errors}
 \include{tex//instruction}
 \include{tex//listing}

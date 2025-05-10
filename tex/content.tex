@@ -1,8 +1,9 @@
 \renewcommand{\contentsname}{Содержание} % название содержания
 \renewcommand{\cftsecpagefont}{}         % избавление от жирности текста
 \renewcommand{\cftsecfont}{}             % избавление от жирности текста
+\setcounter{secnumdepth}{0}              % удаление нумерации секций
 
-\let\oldtableofcontents\tableofcontents  % сохранение нумерации
+\let\oldtableofcontents\tableofcontents  % сохранение нумерации страниц
 \renewcommand{\tableofcontents}{
     \oldtableofcontents
     \thispagestyle{fancy}

@@ -1,0 +1,124 @@
+\label{sec:info}
+\section{Сведения о программной реализации}
+
+\label{subsec:coding_env}
+\subsection{Язык программирования и среда разработки}
+
+При разработке применялись:
+\begin{itemize}
+    \item Компилятор MinGW 8.1.0
+    \item Компоновщик Make 4.4.1
+    \item Среда разработки Qt Creator 5.15.0
+    \item Стандарт языка ISO C++ 17 Standard
+\end{itemize}
+
+
+\label{subsec:input_output}
+\subsection{Входные и выходные данные}
+
+Входные данные:
+\begin{itemize}
+    \item координаты \textit{(x,y,z)} векторов \textbf{a} и \textbf{b} в вещественном виде.
+\end{itemize}
+
+Выходные данные:
+\begin{itemize}
+    \item координаты \textit{(x,y,z)} вектора суммы \textbf{a+b};
+    \item координаты \textit{(x,y,z)} вектора разности \textbf{a-b};
+    \item координаты \textit{(x,y,z)} вектора векторного произведения \textbf{a$\times$b};
+    \item косинус угла между между векторами \textbf{a} и \textbf{b};
+    \item угол между векторами \textbf{a} и \textbf{b};
+    \item длина вектора суммы \textbf{|a+b|};
+    \item длина вектора разности \textbf{|a-b|};
+    \item скалярное произведение векторов \textbf{a} и \textbf{b}.
+\end{itemize}
+
+
+\label{subsec:list_of_modules}
+\subsection{Список спроектированных программных единиц}
+
+{
+    \setlength{\parindent}{0pt}
+    \begin{table}[h!]
+        \begin{tabularx}{\textwidth}{ |X|X|X| }
+            
+        \hline
+        Класс&
+        Назначение &
+        Поля \\ \hline
+
+        \multicolumn{3}{|c|}{Заголовочный файл mathVector.h} \\ \hline
+
+        \code{class MathVector} &
+        Предназначен для хранения координат вершины вектора и выполнение операций над вектором. &
+        \code{float x, y, z}  - координаты вершины вектора. \\ \hline
+
+        \end{tabularx}
+    \end{table}
+}
+
+\newpage
+\begin{landscape}
+    \setlength{\parindent}{0pt}
+    
+    \begin{table}[h!]
+        \begin{tabularx}{1.5\textwidth}{ |>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X| }
+        
+        \hline
+        Функция &
+        Назначение &
+        Возвращаемое/изменяемое значение &
+        Параметры \\ \hline
+
+        \multicolumn{4}{|c|}{Заголовочный файл mathVector.h} \\ \hline
+
+        \code{\seqsplit{MathVector\newline MathVector::operator+(MathVector const\& obj)}} &
+        Сложения векторов по координатам &
+        Возвращает вектор \code{[MathVector]} суммы векторов &
+        \code{MathVector\ const\&\ obj} - вектор для сложения \\ \hline
+        
+        \code{\seqsplit{MathVector\newline MathVector::operator-(MathVector\ const\&\ obj)}} &
+        Вычитание векторов по координатам &
+        Возвращает вектор \code{[MathVector]} разности векторов &
+        \code{MathVector\ const\&\ obj} - вектор для вычитания \\ \hline
+
+        \code{\seqsplit{MathVector\newline MathVector::crossProd(MathVector\ const\&\ obj)}} &
+        Векторное умножение векторов &
+        Возвращает вектор \code{[MathVector]} векторного произведения векторов &
+        \code{MathVector\ const\&\ obj} - вектор для умножения. \\ \hline
+
+        \code{\seqsplit{float\newline MathVector::dotProd(MathVector\ const\&\ obj)\ const}} &
+        Вычисление скалярного произведения векторов &
+        Возвращает значение скалярного произведения \code{[float]}. &
+        \code{MathVector\ const\&\ obj} - вектор для произведения. \\ \hline
+
+        \code{\seqsplit{float\ MathVector::len()}} &
+        Определения длины вектора &
+        Значение длины вектора \code{[float]}. &
+        - \\ \hline
+
+        \code{\seqsplit{float\newline MathVector::cosBetween(MathVector\ const\&\ obj)\ const}} &
+        Определения косинуса между векторами. &
+        Возвращает значение косинуса \code{[float]} между векторами. &
+        \code{MathVector\ const\&\ obj} - вектор, между которым определяется косинус угла. \\ \hline
+
+
+        \code{\seqsplit{float\newline MathVector::angle(MathVector\ const\&\ obj)\ const}} &
+        Определения угла между векторами. &
+        Возвращает значение угла  \code{[float]} в радианах между векторами. &
+        \code{MathVector\ const\&\ obj} - вектор, между которым определяется угол. \\ \hline
+
+        \code{\seqsplit{MathVector::MathVector(float\ xParam,\ float\ yParam,\ float\ zParam)}} &
+        Конструктор по умолчанию. &
+        - &
+        \code{float xParam, float yParam, float zParam} - координаты вершины вектора (x,y,z) для инициализации вектора. \\ \hline
+
+        \code{\seqsplit{MathVector::MathVector(MathVector \&copy)}} &
+        Конструктор копирования. &
+        - &
+        \code{MathVector \&copy} - вектор для копирования. \\ \hline
+
+
+        \end{tabularx}
+    \end{table}
+\end{landscape}
